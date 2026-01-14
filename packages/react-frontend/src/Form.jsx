@@ -5,7 +5,7 @@ function Form(props){
         name: "",
         job: ""
     });
-}
+
 
 function handleChange(event) {
     const { name, value } = event.target;
@@ -16,10 +16,10 @@ function handleChange(event) {
 
 function submitForm() {
     props.handleSubmit(person);
-    setPerson({ name:"", job:"" });
+    setPerson({ name: "", job: "" });
 }
 
-return(
+return (
     <form>
         <label htmlFor="name">Name</label>
         <input
@@ -39,5 +39,7 @@ return(
         />
     </form>
 );
+
+}
 
 export default Form;
