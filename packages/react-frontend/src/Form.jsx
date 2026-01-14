@@ -5,7 +5,7 @@ function Form(props){
         name: "",
         job: ""
     });
-
+    
 
 function handleChange(event) {
     const { name, value } = event.target;
@@ -37,6 +37,7 @@ return (
             value={person.job}
             onChange={handleChange}
         />
+        <input type="button" value="Submit" onClick={submitForm} />
     </form>
 );
 

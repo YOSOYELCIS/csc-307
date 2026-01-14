@@ -23,7 +23,6 @@ function updateList(person) {
       removeCharacter={removeOneCharacter} 
       />
       <Form handleSubmit={updateList} />
-      <input type="button" value="Submit" onClick={submitForm} />
     </div>
   );
 
