@@ -2,14 +2,26 @@
   "name": "csc-307-app",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/YOSOYELCIS/csc-307#readme",
+  "bugs": {
+    "url": "https://github.com/YOSOYELCIS/csc-307/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOSOYELCIS/csc-307.git"
+  },
   "license": "ISC",
   "author": "",
   "type": "commonjs",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "workspaces": [
     "packages*/"
-  ]
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm --prefix packages/express-backend run dev\" \"npm --prefix packages/react-frontend run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
