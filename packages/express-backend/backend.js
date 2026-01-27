@@ -7,35 +7,37 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
+const generateId = () => Math.random().toString(36).slice(2, 10);
+
 const users = {
   users_list: [
     {
-      id: "xyz789",
+      id: generateId(),
       name: "Charlie",
       job: "Janitor"
     },
     {
-      id: "abc123",
+      id: generateId(),
       name: "Mac",
       job: "Bouncer"
     },
     {
-      id: "ppp222",
+      id: generateId(),
       name: "Mac",
       job: "Professor"
     },
     {
-      id: "yat999",
+      id: generateId(),
       name: "Dee",
       job: "Aspring actress"
     },
     {
-      id: "zap555",
+      id: generateId(),
       name: "Dennis",
       job: "Bartender"
     },
     {
-      id: "qwe123",
+      id: generateId(),
       job: "Zookeeper",
       name: "Cindy"
     }
@@ -57,12 +59,10 @@ const findUsersByNameAndJob = (name, job) => {
   );
 };
 
-const generateId = () => Math.random().toString(36).slice(2, 10);
-
 const addUser = (user) => {
     user.id = generateId();
-    users["users_list"].push(user);
-    return(user);
+    users.users_list.push(user);
+    return user;
 };
 
 const deleteUserById = (id) => {
@@ -73,8 +73,7 @@ const deleteUserById = (id) => {
 };
 
 app.post("/users", (req, res) => {
-    const userToAdd = req.body;
-    addUser(userToAdd);
+    const userToAdd = addUser(req.body);
     res.status(201).send(userToAdd);
 });
 
