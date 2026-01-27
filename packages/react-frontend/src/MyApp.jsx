@@ -12,18 +12,6 @@ function MyApp() {
         setCharacters(updated); 
     }
 
-function updateList(person) {
-  postUser(person)
-    .then(() => setCharacters([...characters, person]))
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-function fetchUsers() {
-  const promise = fetch("http://localhost:8000/users");
-  return promise;
-}
 
 function postUser(person) {
   const promise = fetch("http://localhost:8000/users", {
@@ -33,6 +21,20 @@ function postUser(person) {
     },
     body: JSON.stringify(person),
   });
+  return promise;
+}    
+
+function updateList(person) {
+  postUser(person)
+    // .then((res) => res.json())
+    .then(() => setCharacters((prev) => [...prev, person]))
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function fetchUsers() {
+  const promise = fetch("http://localhost:8000/users");
   return promise;
 }
 
