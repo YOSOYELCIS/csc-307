@@ -11,15 +11,10 @@ mongoose
   .catch((error) => console.log(error));
 
 function getUsers(name, job) {
-  let promise;
-  if (name === undefined && job === undefined) {
-    promise = userModel.find();
-  } else if (name && !job) {
-    promise = findUserByName(name);
-  } else if (job && !name) {
-    promise = findUserByJob(job);
-  }
-  return promise;
+  if (!name && !job) return userModel.find();
+  if (name && job) return userModel.find({ name, job });
+  if (name && !job) return findUserByName(name);
+  if (!name && !job) return findUserByJob(job);
 }
 
 function findUserById(id) {
@@ -28,8 +23,12 @@ function findUserById(id) {
 
 function addUser(user) {
   const userToAdd = new userModel(user);
-  const promise = userToAdd.save();
-  return promise;
+//   const promise = userToAdd.save(); //can remove the promise setup
+  return userToAdd.save();
+}
+
+function deleteUserById(id) {
+    return userModel.findByIdAndDelete(id);
 }
 
 function findUserByName(name) {
@@ -42,6 +41,7 @@ function findUserByJob(job) {
 
 export default {
   addUser,
+  deleteUserById,
   getUsers,
   findUserById,
   findUserByName,
