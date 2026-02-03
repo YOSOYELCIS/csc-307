@@ -14,7 +14,7 @@ function getUsers(name, job) {
   if (!name && !job) return userModel.find();
   if (name && job) return userModel.find({ name, job });
   if (name && !job) return findUserByName(name);
-  if (!name && !job) return findUserByJob(job);
+  if (!name && job) return findUserByJob(job);
 }
 
 function findUserById(id) {
